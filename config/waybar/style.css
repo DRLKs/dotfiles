@@ -1,0 +1,75 @@
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 12.5px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(17, 17, 27, 0.88);
+  border: 1px solid rgba(136, 192, 208, 0.4);
+  border-radius: 14px;
+  margin: 8px 16px;
+  padding: 2px 10px;
+}
+
+#workspaces button {
+  background: rgba(136, 192, 208, 0.1);
+  color: #d8dee9;
+  padding: 6px 10px;
+  margin: 0 4px;
+  border-radius: 10px;
+  transition: background 0.2s ease-in-out;
+}
+
+#workspaces button.focused {
+  background: rgba(136, 192, 208, 0.5);
+  color: #1e1e2e;
+  font-weight: bold;
+}
+
+#custom-arch {
+  font-size: 16px;
+  color: #8aadf4;
+  padding-right: 14px;
+  padding-left: 6px;
+}
+
+#clock,
+#memory,
+#cpu,
+#battery,
+#temperature,
+#network,
+#pulseaudio,
+#tray {
+  background: rgba(24, 24, 38, 0.6);
+  color: #e0def4;
+  padding: 4px 10px;
+  margin: 0 4px;
+  border-radius: 10px;
+}
+
+#battery.charging {
+  color: #a6e3a1;
+}
+
+#battery.warning {
+  color: #f9e2af;
+}
+
+#battery.critical {
+  color: #f38ba8;
+  font-weight: bold;
+}
+
+#pulseaudio.muted {
+  color: #f38ba8;
+}
+
+#tray > .passive {
+  opacity: 0.5;
+}
