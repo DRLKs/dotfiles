@@ -73,3 +73,9 @@ window#waybar {
 #tray > .passive {
   opacity: 0.5;
 }
+
+#custom-intellij, #custom-GitHubDesktop {
+      font-size: 18px;       
+    color: #d8dee9;
+    padding: 0 10px;
+}

@@ -5,6 +5,8 @@
   "modules-left": ["custom/arch", "hyprland/workspaces"],
   "modules-center": [],
   "modules-right": [
+    "custom/intellij",
+    "custom/GitHubDesktop",
     "pulseaudio",
     "cpu",
     "memory",
@@ -17,7 +19,7 @@
 
   // Ícono de Arch Linux
   "custom/arch": {
-    "format": "",  //  = logo Arch
+    "format": "",  // logo Arch
     "tooltip": false,
     "interval": 3600
   },
@@ -33,14 +35,28 @@
       "3": "",
       "4": "",
       "5": "",
-      "default": ""
+      "default": ""
     }
   },
 
+  "custom/intellij": {
+    "format": "", 
+    "tooltip": "Abrir IntelliJ IDEA",
+    "on-click": "intellij-idea-ultimate-edition",  // Comando Abrir IntelliJ
+    "interval": 3600  // Intervalo actualización
+  },
+
+  "custom/GitHubDesktop": {
+    "format": "",  
+    "tooltip": "Abrir GitHub Desktop",
+    "on-click": "github-desktop", 
+    "interval": 3600  // no necesita actualizar constantemente
+  },
+
   "clock": {
-        // "timezone": "America/New_York",
+        // "timezone": "Spain/Europe",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%d-%m-%Y}"
   },
   "battery": {
     "format": "{icon} {capacity}%",
