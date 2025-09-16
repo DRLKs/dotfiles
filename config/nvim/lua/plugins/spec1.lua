@@ -38,16 +38,60 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
-    -- load cmp on InsertEnter
     event = "InsertEnter",
-    -- these dependencies will only be loaded when cmp loads
-    -- dependencies are always lazy-loaded unless specified otherwise
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      -- ...
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+          -- TAB para completar o navegar
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }),
+
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
     end,
   },
 
@@ -75,13 +119,13 @@ return {
   },
 
   -- local plugins need to be explicitly configured with dir
-  { dir = "~/projects/secret.nvim" },
+  -- { dir = "~/projects/secret.nvim" },
 
   -- you can use a custom url to fetch a plugin
-  { url = "git@github.com:folke/noice.nvim.git" },
+  --{ url = "git@github.com:folke/noice.nvim.git" },
 
   -- local plugins can also be configured with the dev option.
   -- This will use {config.dev.path}/noice.nvim/ instead of fetching it from GitHub
   -- With the dev option, you can easily switch between the local and installed version of a plugin
-  { "folke/noice.nvim", dev = true },
+  --{ "folke/noice.nvim", dev = true },
 }
