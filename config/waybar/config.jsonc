@@ -15,8 +15,7 @@
     "temperature",
     "battery",
     "network",
-    "clock",
-    "tray"
+    "clock"
   ],
 
   "custom/arch": {
@@ -59,7 +58,7 @@
     "interval": "once",
     "on-click": "if pgrep -x spotify >/dev/null; then playerctl play-pause; else spotify & fi",
     "on-click-right": "spotify",
-    "tooltip-format": "Click: Play/Pause or Start Spotify"
+    "tooltip": "Spotify"
   },
 
   "clock": {
@@ -141,10 +140,5 @@
     },
     "on-click": "pavucontrol",
     "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-  },
-
-  "tray": {
-    "spacing": 8,
-    "icon-size": 16
   }
 }
