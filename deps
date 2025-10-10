@@ -2,3 +2,6 @@ git
 playerctl
 pnpm
 neovim
+
+##### Hyprland
+brightnessctl
