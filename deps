@@ -2,6 +2,8 @@ git
 playerctl
 pnpm
 neovim
+docker
+docker-compose
 
 ##### Hyprland
 brightnessctl
