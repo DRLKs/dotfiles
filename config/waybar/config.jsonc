@@ -39,13 +39,6 @@
     }
   },
 
-  "custom/intellij": {
-    "format": "",
-    "tooltip": "IntelliJ IDEA",
-    "on-click": "intellij-idea-ultimate-edition",
-    "interval": "once"
-  },
-
   "custom/GitHubDesktop": {
     "format": "󰊤",
     "tooltip": "GitHub Desktop",
