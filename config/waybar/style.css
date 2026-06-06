@@ -4,159 +4,65 @@
   border: none;
   margin: 0;
   padding: 0;
-  box-shadow: none;
   min-height: 0;
 }
 
 window#waybar {
-  background: rgba(40, 42, 54, 0.9);
-  border: 1px solid rgba(189, 147, 249, 0.3);
-  margin: 6px 12px;
-  padding: 4px 12px;
-  transition: all 0.3s ease;
+  background: rgba(17, 17, 27, 0.85);
+  color: #cdd6f4;
 }
 
 /* Workspaces */
-#workspaces {
-  background: rgba(68, 71, 90, 0.7);
-  border-radius: 20px;
-  padding: 3px 6px;
-  margin-right: 8px;
-}
-
 #workspaces button {
   background: transparent;
-  color: #f8f8f2;
-  padding: 0;
-  margin: 2px 3px;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  font-weight: 500;
-  min-width: 28px;
-  min-height: 28px;
-  font-size: 13px;
+  color: #585b70;
+  padding: 0 8px;
+  font-size: 10px;
 }
 
-#workspaces button:hover {
-  background: rgba(189, 147, 249, 0.3);
-  color: #bd93f9;
-}
-
-#workspaces button.focused,
 #workspaces button.active {
-  background: rgba(189, 147, 249, 0.8);
-  color: #282a36;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(189, 147, 249, 0.4);
+  color: #cdd6f4;
 }
 
-/* Custom Arch Logo */
-#custom-arch {
-  font-size: 16px;
-  color: #8be9fd;
-  padding: 6px 12px;
-  margin-right: 8px;
-  background: rgba(139, 233, 253, 0.15);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-#custom-arch:hover {
-  background: rgba(139, 233, 253, 0.25);
-}
-
-/* Module styling */
+/* Modules */
 #clock,
-#memory,
-#cpu,
 #battery,
-#temperature,
 #network,
 #pulseaudio,
-#tray {
-  background: rgba(68, 71, 90, 0.7);
-  color: #f8f8f2;
-  padding: 6px 12px;
-  margin: 0 3px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-size: 11px;
+#cpu,
+#temperature {
+  padding: 0 10px;
+  color: #bac2de;
 }
 
-#clock:hover,
-#memory:hover,
-#cpu:hover,
-#battery:hover,
-#temperature:hover,
-#network:hover,
-#pulseaudio:hover {
-  background: rgba(68, 71, 90, 0.9);
-  box-shadow: 0 2px 6px rgba(189, 147, 249, 0.2);
-}
-
-/* Clock special styling */
 #clock {
-  background: rgba(139, 233, 253, 0.2);
-  color: #8be9fd;
+  color: #cdd6f4;
   font-weight: bold;
 }
 
-#clock:hover {
-  background: rgba(139, 233, 253, 0.3);
+/* CPU/Temp states */
+#cpu.warning {
+  color: #f9e2af;
+}
+
+#cpu.critical {
+  color: #f38ba8;
+}
+
+#temperature.critical {
+  color: #f38ba8;
 }
 
 /* Battery states */
-#battery.charging {
-  background: rgba(80, 250, 123, 0.2);
-  color: #50fa7b;
-}
-
 #battery.warning {
-  background: rgba(241, 250, 140, 0.2);
-  color: #f1fa8c;
+  color: #f9e2af;
 }
 
 #battery.critical {
-  background: rgba(255, 85, 85, 0.2);
-  color: #ff5555;
-  font-weight: bold;
+  color: #f38ba8;
 }
 
 /* Audio */
 #pulseaudio.muted {
-  background: rgba(255, 85, 85, 0.2);
-  color: #ff5555;
-}
-
-/* Custom app launchers */
-#custom-intellij, #custom-GitHubDesktop, #custom-spotify {
-  font-size: 16px;
-  color: #f8f8f2;
-  padding: 6px 10px;
-  margin: 0 3px;
-  background: rgba(68, 71, 90, 0.7);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-#custom-intellij:hover, #custom-GitHubDesktop:hover, #custom-spotify:hover {
-  background: rgba(68, 71, 90, 0.9);
-  box-shadow: 0 2px 6px rgba(189, 147, 249, 0.2);
-}
-
-/* Spotify specific styling */
-#custom-spotify {
-  background: rgba(80, 250, 123, 0.2);
-  color: #50fa7b;
-  font-weight: 500;
-}
-
-#custom-spotify:hover {
-  background: rgba(80, 250, 123, 0.3);
-  box-shadow: 0 2px 6px rgba(80, 250, 123, 0.2);
-}
-
-/* Tray */
-#tray > .passive {
-  opacity: 0.6;
+  color: #585b70;
 }
