@@ -214,6 +214,7 @@ setup_symlinks() {
     link_config "$DOTFILES_DIR/config/alacritty" "$CONFIG_DIR/alacritty"
     link_config "$DOTFILES_DIR/config/hypr" "$CONFIG_DIR/hypr"
     link_config "$DOTFILES_DIR/config/waybar" "$CONFIG_DIR/waybar"
+    link_config "$DOTFILES_DIR/config/wofi" "$CONFIG_DIR/wofi"
     link_config "$DOTFILES_DIR/config/nvim" "$CONFIG_DIR/nvim"
     link_config "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
 
