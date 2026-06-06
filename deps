@@ -1,9 +1,61 @@
+##### Base system
+base-devel
 git
-playerctl
-pnpm
+curl
+wget
+unzip
+bash-completion
+
+##### Display Manager
+gdm
+
+##### Hyprland / Wayland
+hyprland
+hyprpaper
+xdg-desktop-portal-hyprland
+qt5-wayland
+qt6-wayland
+polkit-gnome
+
+##### Terminal
+alacritty
+
+##### Bar and launcher
+waybar
+wofi
+
+##### Applications
+firefox
+thunar
 neovim
+
+##### Audio (PipeWire)
+pipewire
+pipewire-pulse
+pipewire-alsa
+wireplumber
+pavucontrol
+
+##### Network
+networkmanager
+nm-connection-editor
+
+##### Fonts
+ttf-jetbrains-mono-nerd
+
+##### Utilities
+brightnessctl
+playerctl
+grim
+slurp
+
+##### Containers
 docker
 docker-compose
 
-##### Hyprland
-brightnessctl
+##### Development
+pnpm
+
+##### AUR
+hyprshot
+spotify

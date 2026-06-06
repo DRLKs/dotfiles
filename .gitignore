@@ -1,0 +1,6 @@
+*.bak
+*.swp
+*.swo
+*~
+.netrwhist
+lazy-lock.json
