@@ -6,9 +6,6 @@ wget
 unzip
 bash-completion
 
-##### Display Manager
-gdm
-
 ##### Hyprland / Wayland
 hyprland
 xdg-desktop-portal-hyprland
@@ -44,6 +41,11 @@ nm-connection-editor
 
 ##### Fonts
 ttf-jetbrains-mono-nerd
+
+##### Dictation (SUPER+D, bin/dictar)
+whisper-cpp
+wtype
+libnotify
 
 ##### Utilities
 brightnessctl

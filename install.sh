@@ -49,9 +49,6 @@ PACMAN_PKGS=(
     wget
     unzip
 
-    # Display Manager
-    gdm
-
     # Hyprland / Wayland compositor
     hyprland
     xdg-desktop-portal-hyprland
@@ -98,6 +95,11 @@ PACMAN_PKGS=(
 
     # Fonts
     ttf-jetbrains-mono-nerd
+
+    # Dictation (SUPER+D, bin/dictar)
+    whisper-cpp
+    wtype
+    libnotify
 
     # System utilities
     brightnessctl
@@ -220,6 +222,7 @@ setup_symlinks() {
     link_config "$DOTFILES_DIR/config/mako" "$CONFIG_DIR/mako"
     link_config "$DOTFILES_DIR/config/nvim" "$CONFIG_DIR/nvim"
     link_config "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
+    link_config "$DOTFILES_DIR/bin/dictar" "$HOME/.local/bin/dictar"
 
     success "Symlinks created."
 }
@@ -232,9 +235,7 @@ enable_services() {
     info "Enabling system services..."
 
     sudo systemctl enable --now NetworkManager 2>/dev/null || true
-    sudo systemctl enable gdm 2>/dev/null || true
     sudo systemctl enable docker 2>/dev/null || true
-    sudo systemctl set-default graphical.target
 
     # Add user to docker group
     if ! groups "$USER" | grep -q docker; then
@@ -269,7 +270,8 @@ main() {
     echo ""
     echo "Next steps:"
     echo "  1. Reboot: sudo reboot"
-    echo "  2. Select Hyprland in GDM at login"
+    echo "  2. Log in on the TTY and run: start-hyprland"
+    echo "  3. Download the dictation model (see README, \"Dictation\")"
     echo ""
 }
 

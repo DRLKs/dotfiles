@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Toggle dictation: first call starts recording, second call stops, transcribes and types the text.
+MODEL="${DICTAR_MODEL:-$HOME/.local/share/whisper/ggml-base.bin}"
+THREADS=4
+RUNDIR="${XDG_RUNTIME_DIR:-/tmp}/dictar"
+PIDFILE="$RUNDIR/pid"
+WAV="$RUNDIR/rec.wav"
+LOG="$RUNDIR/log"
+mkdir -p "$RUNDIR"
+
+NID="$RUNDIR/notify-id"
+
+# Notifications via mako; each one replaces the previous so only one bubble shows.
+# $1=ms $2=state (recording|transcribing|error) -> mako category colors $3=text
+notify() {
+    local id; id=$(cat "$NID" 2>/dev/null)
+    notify-send -a Dictado -c "dictar.$2" -t "$1" -p ${id:+-r "$id"} "Dictado" "$3" > "$NID" 2>/dev/null
+}
+
+dismiss() {
+    [[ -f "$NID" ]] && makoctl dismiss -n "$(cat "$NID")" >/dev/null 2>&1
+    rm -f "$NID"
+}
+
+if [[ -f "$PIDFILE" ]] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+    PID=$(cat "$PIDFILE"); kill -INT "$PID"; rm -f "$PIDFILE"
+    while kill -0 "$PID" 2>/dev/null; do sleep 0.05; done
+    dismiss
+    notify 30000 transcribing "Transcribiendo..."
+    RAW=$(nice -n 10 whisper-cli -m "$MODEL" -t "$THREADS" -l auto -nt -np -f "$WAV" 2>>"$LOG")
+    TEXT=$(printf '%s' "$RAW" | tr '\n' ' ' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
+    echo "$(date +%T) wav=$(stat -c%s "$WAV") raw=[$RAW] text=[$TEXT]" >> "$LOG"
+    dismiss
+    # Whisper emits tags like [BLANK_AUDIO] on silence: ignore them
+    if [[ -z "$TEXT" || "$TEXT" =~ ^\[.*\]$ || "$TEXT" =~ ^\(.*\)$ ]]; then
+        notify 2500 error "No se oyó nada (revisa el micro)"
+    else
+        wtype -- "$TEXT" 2>>"$LOG" || notify 3000 error "wtype falló, mira $LOG"
+    fi
+else
+    pw-record --rate 16000 --channels 1 "$WAV" 2>>"$LOG" &
+    echo $! > "$PIDFILE"
+    notify 600000 recording "GRABANDO... (SUPER+D para parar)"
+fi
