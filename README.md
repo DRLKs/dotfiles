@@ -25,19 +25,25 @@ After installation, reboot and select **Hyprland** in GDM.
 | Compositor | Hyprland |
 | Terminal | Alacritty |
 | Bar | Waybar |
-| Launcher | Wofi |
+| Launcher | Fuzzel |
+| Notifications | Mako |
+| Lock / idle | Hyprlock + Hypridle |
 | Editor | Neovim (lazy.nvim) |
 | Browser | Firefox |
 | File Manager | Thunar |
 | Audio | PipeWire + WirePlumber |
-| Wallpaper | Hyprpaper |
+| Wallpaper | Solid color (`misc.background_color`) |
 | Display Manager | GDM |
 | Theme | Dracula |
 | Font | JetBrainsMono Nerd Font |
 
 ## Wallpaper
 
-Place your wallpaper at `~/Pictures/wallpapers/arch/lone.jpg` or edit `config/hypr/hyprpaper.conf`.
+No wallpaper daemon: Hyprland paints a solid Dracula background (`misc.background_color` in `config/hypr/hyprland.lua`).
+
+## Lock and idle
+
+`SUPER + L` locks the screen. Hypridle dims the screen after 2.5 min, locks at 5 min, turns the screen off at 5.5 min and suspends at 15 min (`config/hypr/hypridle.conf`).
 
 ## GDM Setup
 

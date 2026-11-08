@@ -1,3 +1,4 @@
+/* Waybar - Dracula */
 * {
   font-family: "JetBrainsMono Nerd Font", monospace;
   font-size: 12px;
@@ -8,20 +9,24 @@
 }
 
 window#waybar {
-  background: rgba(17, 17, 27, 0.85);
-  color: #cdd6f4;
+  background: rgba(40, 42, 54, 0.9); /* #282a36 */
+  color: #f8f8f2;
 }
 
 /* Workspaces */
 #workspaces button {
   background: transparent;
-  color: #585b70;
+  color: #6272a4;
   padding: 0 8px;
   font-size: 10px;
 }
 
 #workspaces button.active {
-  color: #cdd6f4;
+  color: #f8f8f2;
+}
+
+#workspaces button.urgent {
+  color: #ff5555;
 }
 
 /* Modules */
@@ -32,37 +37,39 @@ window#waybar {
 #cpu,
 #temperature {
   padding: 0 10px;
-  color: #bac2de;
+  color: #f8f8f2;
 }
 
 #clock {
-  color: #cdd6f4;
+  color: #f8f8f2;
   font-weight: bold;
 }
 
 /* CPU/Temp states */
 #cpu.warning {
-  color: #f9e2af;
+  color: #ffb86c;
 }
 
-#cpu.critical {
-  color: #f38ba8;
-}
-
+#cpu.critical,
 #temperature.critical {
-  color: #f38ba8;
+  color: #ff5555;
 }
 
 /* Battery states */
+#battery.charging {
+  color: #50fa7b;
+}
+
 #battery.warning {
-  color: #f9e2af;
+  color: #ffb86c;
 }
 
 #battery.critical {
-  color: #f38ba8;
+  color: #ff5555;
 }
 
-/* Audio */
-#pulseaudio.muted {
-  color: #585b70;
+/* Audio / network */
+#pulseaudio.muted,
+#network.disconnected {
+  color: #6272a4;
 }

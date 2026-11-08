@@ -54,7 +54,6 @@ PACMAN_PKGS=(
 
     # Hyprland / Wayland compositor
     hyprland
-    hyprpaper
     xdg-desktop-portal-hyprland
 
     # Wayland essentials
@@ -71,8 +70,11 @@ PACMAN_PKGS=(
     # Status bar
     waybar
 
-    # App launcher
-    wofi
+    # App launcher, notifications, lock/idle
+    fuzzel
+    mako
+    hyprlock
+    hypridle
 
     # File manager
     thunar
@@ -214,7 +216,8 @@ setup_symlinks() {
     link_config "$DOTFILES_DIR/config/alacritty" "$CONFIG_DIR/alacritty"
     link_config "$DOTFILES_DIR/config/hypr" "$CONFIG_DIR/hypr"
     link_config "$DOTFILES_DIR/config/waybar" "$CONFIG_DIR/waybar"
-    link_config "$DOTFILES_DIR/config/wofi" "$CONFIG_DIR/wofi"
+    link_config "$DOTFILES_DIR/config/fuzzel" "$CONFIG_DIR/fuzzel"
+    link_config "$DOTFILES_DIR/config/mako" "$CONFIG_DIR/mako"
     link_config "$DOTFILES_DIR/config/nvim" "$CONFIG_DIR/nvim"
     link_config "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
 
@@ -267,60 +270,8 @@ main() {
     echo "Next steps:"
     echo "  1. Reboot: sudo reboot"
     echo "  2. Select Hyprland in GDM at login"
-    echo "  3. Place your wallpaper at ~/Pictures/wallpapers/arch/lone.jpg"
     echo ""
 }
 
 main "$@"
 
-# ============================================================
-# System services
-# ============================================================
-
-enable_services() {
-    info "Enabling system services..."
-
-    sudo systemctl enable --now NetworkManager 2>/dev/null || true
-    sudo systemctl enable gdm 2>/dev/null || true
-    sudo systemctl enable docker 2>/dev/null || true
-    sudo systemctl set-default graphical.target
-
-    # Add user to docker group
-    if ! groups "$USER" | grep -q docker; then
-        sudo usermod -aG docker "$USER"
-        warn "Added to docker group. Log out and back in for it to take effect."
-    fi
-
-    success "Services enabled."
-}
-
-# ============================================================
-# Main
-# ============================================================
-
-main() {
-    echo ""
-    echo -e "${BLUE}╔══════════════════════════════════════╗${NC}"
-    echo -e "${BLUE}║   Arch Linux Dotfiles Installer      ║${NC}"
-    echo -e "${BLUE}╚══════════════════════════════════════╝${NC}"
-    echo ""
-
-    install_pacman_packages
-    install_yay
-    install_aur_packages
-    setup_symlinks
-    enable_services
-
-    echo ""
-    echo -e "${GREEN}══════════════════════════════════════${NC}"
-    echo -e "${GREEN} Installation complete!${NC}"
-    echo -e "${GREEN}══════════════════════════════════════${NC}"
-    echo ""
-    echo "Next steps:"
-    echo "  1. Reboot: sudo reboot"
-    echo "  2. Select Hyprland in GDM at login"
-    echo "  3. Place your wallpaper at ~/Pictures/wallpapers/arch/lone.jpg"
-    echo ""
-}
-
-main "$@"

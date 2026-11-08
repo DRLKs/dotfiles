@@ -1,0 +1,31 @@
+# mako - notifications (Dracula)
+font=JetBrainsMono Nerd Font 10
+background-color=#282a36f2
+text-color=#f8f8f2
+border-color=#bd93f9
+progress-color=over #44475a
+border-size=2
+border-radius=10
+padding=10,14
+margin=14
+width=340
+max-visible=3
+default-timeout=5000
+icons=0
+
+[urgency=low]
+border-color=#6272a4
+
+[urgency=critical]
+border-color=#ff5555
+default-timeout=0
+
+# Dictation (~/.local/bin/dictar)
+[category=dictar.recording]
+border-color=#50fa7b
+
+[category=dictar.transcribing]
+border-color=#ffb86c
+
+[category=dictar.error]
+border-color=#ff5555

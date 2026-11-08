@@ -20,7 +20,7 @@ hl.monitor({
 
 local terminal    = "alacritty"
 local fileManager = "thunar"
-local menu        = "wofi --show drun"
+local menu        = "fuzzel"
 
 
 -------------------
@@ -28,8 +28,9 @@ local menu        = "wofi --show drun"
 -------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprpaper")
     hl.exec_cmd("waybar")
+    hl.exec_cmd("mako")
+    hl.exec_cmd("hypridle")
 end)
 
 
@@ -125,8 +126,11 @@ hl.config({
         new_status = "master",
     },
     misc = {
-        force_default_wallpaper = 1,
-        disable_hyprland_logo   = true,
+        -- Solid Dracula background, no wallpaper daemon needed
+        force_default_wallpaper  = 0,
+        disable_hyprland_logo    = true,
+        disable_splash_rendering = true,
+        background_color         = "rgb(282a36)",
     },
     xwayland = {
         force_zero_scaling = true,
@@ -175,6 +179,9 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",     hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J",     hl.dsp.layout("togglesplit")) -- dwindle
 hl.bind(mainMod .. " + B",     hl.dsp.exec_cmd("firefox"))
+
+-- Bloquear pantalla (hyprlock via hypridle)
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
 
 -- Pantalla completa
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
